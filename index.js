@@ -72,10 +72,10 @@ function master(){
     let Cs=[]
     let Cr=[]
     let Vp=parseFloat(V)/math.sqrt(3)
-    Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.cos(math.atan(B.im/B.re)))/math.abs(B))
-    Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.sin(math.atan(B.im/B.re)))/math.abs(B))
-    Cr.push((math.abs(A)*Math.pow(Vp,2)*math.cos(math.atan(B.im/B.re)))/math.abs(B))
-    Cr.push((math.abs(A)*Math.pow(Vp,2)*math.sin(math.atan(B.im/B.re)))/math.abs(B))
+    Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.cos(math.atan(B.im/B.re)-math.atan(D.im/D.re)))/math.abs(B))
+    Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.sin(math.atan(B.im/B.re)-math.atan(D.im/D.re)))/math.abs(B))
+    Cr.push((math.abs(A)*Math.pow(Vp,2)*math.cos(math.atan(B.im/B.re)-math.atan(A.im/A.re)))/math.abs(B))
+    Cr.push((math.abs(A)*Math.pow(Vp,2)*math.sin(math.atan(B.im/B.re)-math.atan(A.im/A.re)))/math.abs(B))
     let Rc = math.abs(Vs)*Vp/math.abs(B);
     console.log(Rc)
     graph(Cs,Cr,Rc)
