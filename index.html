@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+    <link rel="stylesheet" type="text/css" href="index.css" >
+    <title>Document</title>
+</head>
+<body>
+    <header class="shadow-dreamy" id="inputhead">
+        <h1> Transmission Line Characteristics - Input Page</h1>
+    </header>
+    <header class="shadow-dreamy" id="outputhead">
+        <h1> Transmission Line Characteristics - Output Page</h1>
+    </header>
+    <div class="container" id="visible">
+    
+        <form class="shadow-dreamy" autocomplete="off">
+            <h2>Please Enter Valid Inputs</h2>
+            <div id="radio">
+                <span>Type of Spacing</span><br>
+                <input id="sym" name="choice"type="radio" onclick="onCheck()">
+                <label for="sym">Symmetrical</label><br>
+                <input id="unsym" name="choice" type="radio" onclick="onCheck()" checked>
+                <label for="unsym">Unsymmetrical</label>
+            </div>
+
+            <div id="params">
+                <span>Enter number of subconductors per bundle</span>
+                <input max="10" type="number">
+                <span>Enter the spacing between the subconductors within a bundle(Enter comma separated values)</span>
+                <input id="sgmd" type="text">
+                <span>Enter the value of d1</span>
+                <input class="md" type="number">
+                <span>Enter the value of d2</span>
+                <input  class="md" type="number">
+                <span>Enter the value of d3</span>
+                <input  class="md" type="number">
+                <span>Enter number of strands per subconductor</span>
+                <input type="number">
+                <span>Enter the diameter of a strand</span>
+                <input type="number">
+                <span>Enter the length of line</span>
+                <input type="number">
+                <span>Enter the resistance of line per km</span>
+                <input type="number">
+                <span>Enter the power frequency</span>
+                <input type="number">
+                <span>Enter the nominal system voltage in kV</span>
+                <input type="number">
+                <span>Enter the receiving end load in MW</span>
+                <input type="number">
+                <span>Enter the power factor of receiving end load </span>
+                <input type="number">
+            </div>
+  
+            <button class="submit" type="button" onclick="master()">Submit</button>
+        </form>
+    </div>
+  
+    <div class="container shadow-dreamy" id="invisible">
+        <span>Model of Line </span>
+        <div class="op"></div>
+        <span>Inductance per phase per km in H/km </span>
+        <div class="op"></div>
+        <span>Capacitance per phase per km in F/km </span>
+        <div class="op"></div>
+        <span>Inductive reactance of the line in Ohm </span>
+        <div class="op"></div>
+        <span>Capacitive reactance of the line in Ohm </span>
+        <div class="op"></div>
+        <span>ABCD Parameters </span>
+        <span id="A">A </span>
+        <div class="op"></div>
+        <span id="B">B </span>
+        <div class="op"></div>
+        <span id="C">C </span>
+        <div class="op"></div>
+        <span id="D">D </span>
+        <div class="op"></div>
+        <span>Sending End voltage (Vs) </span>
+        <div class="op"></div>
+        <span>Sending End Current (Is) </span>
+        <div class="op"></div>
+        <span>Percentage Voltage Regulation </span>
+        <div class="op"></div>
+        <span>Power Loss </span>
+        <div class="op"></div>
+        <span>Percentage Efficiency </span>
+        <div class="op"></div>
+        <span>Charging Current </span>
+        <div class="op"></div>
+        <span id="h">Compensation</span>
+        <div class="op"></div>
+    </div>
+    <div id="graphsec">
+        <span class="hide" id="g1">Sending End Power Circle Diagram</span>
+        <div id="s" style="width: 600px; height: 400px;"></div>
+        <span class="hide" id="g2">Sending End Power Circle Diagram</span>
+        <div id="r" style="width: 600px; height: 400px;"></div>
+    </div>
+    <p>A webpage by<br>Nithin Sravan, Chockalingam and Shakya Reddy<br><span id="heart"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">&hearts;</a></span></p>
+      <script src="util.js"></script>
+      <script src="index.js"></script>
+</body>
+</html>  
