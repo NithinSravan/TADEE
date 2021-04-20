@@ -39,8 +39,8 @@ document.addEventListener("wheel", function(event){
     }
 });
 function graph(Cs,Cr,r) {
-  let graph1 = Desmos.GraphingCalculator(seEnd);
-  let graph2 = Desmos.GraphingCalculator(reEnd);
+  let graph1 = Desmos.GraphingCalculator(seEnd,{keypad:false});
+  let graph2 = Desmos.GraphingCalculator(reEnd,{keypad:false});
   document.querySelectorAll('.hide')[0].style.display="block";
   document.querySelectorAll('.hide')[1].style.display="block";
   r/=Math.pow(10,6);
@@ -149,14 +149,14 @@ function capacitance(N,s,d1,d2,d3){
 //charging current
 function chargingCurr(str,Vs){
     if(str==="Short")
-    return 0;
+     return 0;
     else if(str==="Nominal-Pi"){
         let i= math.abs(Vs)/(2*Xc)
         console.log(Vs)
         return i;
     }
     else
-    return ""
+     return ""
 }
 
 //Compensation

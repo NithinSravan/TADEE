@@ -110,11 +110,13 @@ function master(){
     op[14].innerText=math.round(Ich,5);
     if(l<=80){
         comp=compensation()
-        op[15].innerText=math.round(comp,5)
+        op[15].innerText=3*math.round(comp,5)
+        document.getElementsByClassName('h')[1].style.display="block"
     }
     else{
         op[15].style.display="none"
-        document.getElementById('h').style.display="none"
+        document.getElementsByClassName('h')[0].style.display="none"
+       
     }
  
 }
@@ -124,11 +126,21 @@ function onCheck(){
         dInp[2].disabled=true;
         dInp[1].value=""
         dInp[2].value=""
-        labels[3].innerText="Enter the value of d";
+        labels[3].innerText="Enter the value of d in m";
     }
     else{
         dInp[1].disabled=false;
         dInp[2].disabled=false;
-        labels[3].innerText="Enter the value of d1";
+        labels[3].innerText="Enter the value of d1 in m";
     }
 }
+// Avoid page-breaks on all elements, and add one before #page2el.
+
+function printDiv() {
+    let outputDiv=document.getElementById("invisible");
+    html2pdf(document.body, { margin:       10,
+        filename:     'TADEE.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 1, logging: true, dpi: 192, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a3', orientation: 'portrait' }});
+  }

@@ -191,3 +191,23 @@ a{
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
 }
+#print{
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin:  30px;
+    color:#ffffff;
+    width: 10vw;
+    transition: 0.3s;
+    text-align: center;
+    background:rgb(42, 73, 247);
+    opacity: 1;
+    border:none;
+    font-size: 85%;
+}
+#det{
+    margin-top: 30px;
+    background-color: rgba(255, 251, 6, 0.212);
+    padding: 30px;
+    
+}
