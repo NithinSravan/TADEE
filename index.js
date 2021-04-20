@@ -53,7 +53,10 @@ function master(){
         abcdParams("L",z,y)
         console.log(A,B,C,D)
     }
+    if(pfr<0)
     Ir= math.complex({r:receivingCurr(Pr,pfr,V),phi:-math.acos(pfr)});
+    else
+    Ir= math.complex({r:receivingCurr(Pr,pfr,V),phi:math.acos(pfr)});
 
     let a =math.multiply(A,parseFloat(V)/math.sqrt(3))
     let b= math.multiply(B,Ir)
@@ -126,6 +129,8 @@ function onCheck(){
         dInp[2].disabled=true;
         dInp[1].value=""
         dInp[2].value=""
+        dInp[1].placeholder=""
+        dInp[2].placeholder=""
         labels[3].innerText="Enter the value of d in m";
     }
     else{
@@ -137,7 +142,6 @@ function onCheck(){
 // Avoid page-breaks on all elements, and add one before #page2el.
 
 function printDiv() {
-    let outputDiv=document.getElementById("invisible");
     html2pdf(document.body, { margin:       10,
         filename:     'TADEE.pdf',
         image:        { type: 'jpeg', quality: 0.98 },

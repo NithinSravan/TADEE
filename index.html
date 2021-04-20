@@ -32,31 +32,31 @@
 
             <div id="params">
                 <span>Enter number of subconductors per bundle</span>
-                <input max="10" type="number">
+                <input max="10" type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the spacing between the subconductors within a bundle(Enter comma separated values) in m</span>
-                <input id="sgmd" type="text">
+                <input id="sgmd" type="text" placeholder="Please enter nC2 number of values" required>
                 <span>Enter the value of d1 in m</span>
-                <input class="md" type="number">
+                <input class="md" type="number" placeholder="Please enter valid values..." required>
                 <span>Enter the value of d2 in m</span>
-                <input  class="md" type="number">
+                <input  class="md" type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the value of d3 in m</span>
-                <input  class="md" type="number">
+                <input  class="md" type="number"placeholder="Please enter valid values..." required>
                 <span>Enter number of strands per subconductor</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the diameter of a strand in m</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the length of line in km</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the resistance of line per km</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the power frequency</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the nominal system voltage in kV</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the receiving end load in MW</span>
-                <input type="number">
+                <input type="number"placeholder="Please enter valid values..." required>
                 <span>Enter the power factor of receiving end load </span>
-                <input type="number">
+                <input type="number"placeholder="Please enter values between -1 and 1..." required>
             </div>
   
             <button class="submit" type="button" onclick="master()">Submit</button>
@@ -112,10 +112,10 @@
     <div id="graphsec">
         <div class="html2pdf__page-break"></div>
         <span class="hide" id="g1">Sending End Power Circle Diagram</span>
-        <div id="s" style="width: 600px; height: 400px;"></div>
+        <div id="s" style="width: 800px; height: 400px;"></div>
         <div class="html2pdf__page-break"></div>
         <span class="hide" id="g2">Sending End Power Circle Diagram</span>
-        <div id="r" style="width: 600px; height: 400px;"></div>
+        <div id="r" style="width: 800px; height: 400px;"></div>
     </div>
     <p>A webpage by<br>Nithin Sravan, Chockalingam and Shakya Reddy<br><span id="heart"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">&hearts;</a></span></p>
       <script src="util.js"></script>

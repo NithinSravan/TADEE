@@ -108,11 +108,16 @@ a{
     margin-top: 15px;
 
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(19, 22, 39, 0.623);
+    font-size: 0.75em;
+    opacity: 1; /* Firefox */
+  }
 #params input{
     margin-bottom: 25px;
     margin-top: 5px;
     width: 40vw;
-    padding: 15px 60px;
+    padding: 15px 20px;
     border: none;
     font-size: 1.5em;
     border-bottom:3px solid rgb(77, 104, 255);
