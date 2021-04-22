@@ -210,7 +210,10 @@ a{
     border:none;
     font-size: 85%;
 }
-#det{
+.h{
+    display: none;
+}
+#det1,#det2{
     margin-top: 30px;
     background-color: rgba(255, 251, 6, 0.212);
     padding: 30px;

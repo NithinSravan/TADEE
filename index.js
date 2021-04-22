@@ -21,6 +21,7 @@ function init(){
    pfr=inputs[12].value;
 
    Dia = subDia(N,d);
+   console.log(Dia)
    s=stringSeparator()
    L =inductance(N,s,d1,d2,d3)
    Cap=capacitance(N,s,d1,d2,d3)
@@ -53,10 +54,17 @@ function master(){
         abcdParams("L",z,y)
         console.log(A,B,C,D)
     }
-    if(pfr<0)
-    Ir= math.complex({r:receivingCurr(Pr,pfr,V),phi:-math.acos(pfr)});
-    else
-    Ir= math.complex({r:receivingCurr(Pr,pfr,V),phi:math.acos(pfr)});
+
+    if(pfr<0){
+        pfr=math.abs(pfr)
+        Ir= math.complex({r:receivingCurr(Pr,pfr,V),phi:-math.acos(pfr)});
+        sign =1;
+    }
+    else{
+        pfr=math.abs(pfr)
+        Ir= math.complex({r:receivingCurr(Pr,pfr,V),phi:math.acos(pfr)});
+        sign =-1;
+    }
 
     let a =math.multiply(A,parseFloat(V)/math.sqrt(3))
     let b= math.multiply(B,Ir)
@@ -72,10 +80,21 @@ function master(){
     let Cs=[]
     let Cr=[]
     let Vp=parseFloat(V)/math.sqrt(3)
-    Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.cos(math.atan(B.im/B.re)-math.atan(D.im/D.re)))/math.abs(B))
-    Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.sin(math.atan(B.im/B.re)-math.atan(D.im/D.re)))/math.abs(B))
-    Cr.push((math.abs(A)*Math.pow(Vp,2)*math.cos(math.atan(B.im/B.re)-math.atan(A.im/A.re)))/math.abs(B))
-    Cr.push((math.abs(A)*Math.pow(Vp,2)*math.sin(math.atan(B.im/B.re)-math.atan(A.im/A.re)))/math.abs(B))
+    console.log(D.re,B.re)
+    if(l<=80){
+        Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.cos(math.atan(B.im/B.re)))/math.abs(B))
+        Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.sin(math.atan(B.im/B.re)))/math.abs(B))
+        Cr.push((math.abs(A)*Math.pow(Vp,2)*math.cos(math.atan(B.im/B.re)))/math.abs(B))
+        Cr.push((math.abs(A)*Math.pow(Vp,2)*math.sin(math.atan(B.im/B.re)))/math.abs(B))
+    }
+    else{
+        Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.cos(math.atan(B.im/B.re)-math.atan(D.im/D.re)))/math.abs(B))
+        Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.sin(math.atan(B.im/B.re)-math.atan(D.im/D.re)))/math.abs(B))
+        Cr.push((math.abs(A)*Math.pow(Vp,2)*math.cos(math.atan(B.im/B.re)-math.atan(A.im/A.re)))/math.abs(B))
+        Cr.push((math.abs(A)*Math.pow(Vp,2)*math.sin(math.atan(B.im/B.re)-math.atan(A.im/A.re)))/math.abs(B))
+    }
+
+    console.log(Cs,Cr)
     let Rc = math.abs(Vs)*Vp/math.abs(B);
     console.log(Rc)
     graph(Cs,Cr,Rc)
@@ -93,7 +112,7 @@ function master(){
     outputDiv.style.display="flex"
     outputHead.style.display="flex"
     console.log(L)
-    Ich=chargingCurr(str,Vs);
+    Ich=chargingCurr(C,Vr);
     op[0].innerText=str;
     
 
@@ -113,8 +132,12 @@ function master(){
     op[14].innerText=math.round(Ich,5);
     if(l<=80){
         comp=compensation()
-        op[15].innerText=3*math.round(comp,5)
+        op[15].innerText=math.round(comp,5)
+        document.getElementsByClassName('h')[0].style.display="block"
+        if(comp<0)
         document.getElementsByClassName('h')[1].style.display="block"
+        else
+        document.getElementsByClassName('h')[2].style.display="block"
     }
     else{
         op[15].style.display="none"
@@ -142,7 +165,7 @@ function onCheck(){
 // Avoid page-breaks on all elements, and add one before #page2el.
 
 function printDiv() {
-    html2pdf(document.body, { margin:       10,
+    html2pdf(document.body, { margin: 10,
         filename:     'TADEE.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 1, logging: true, dpi: 192, letterRendering: true },

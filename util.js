@@ -22,6 +22,7 @@ let A,B,C,D; //ABCD Parameters
 let Ich; //Charging Current
 s=[]
 let comp; //compensation
+let sign;//sign
 let epsilon =  8.85*Math.pow(10,-12);
 
 let sgmdIp = document.getElementById('sgmd');
@@ -75,7 +76,6 @@ function receivingCurr(Pr, pfr,V){
     return Ir;
 }
 function abcdParams(model,z,y=1){
-    let arr=[]
     if(model === "S"){
         A = 1
         B =z
@@ -147,16 +147,8 @@ function capacitance(N,s,d1,d2,d3){
 }
 
 //charging current
-function chargingCurr(str,Vs){
-    if(str==="Short")
-     return 0;
-    else if(str==="Nominal-Pi"){
-        let i= math.abs(Vs)/(2*Xc)
-        console.log(Vs)
-        return i;
-    }
-    else
-     return ""
+function chargingCurr(C,Vr){
+    return math.multiply(C,Vr)
 }
 
 //Compensation
@@ -168,7 +160,7 @@ function compensation(){
     let r = Vp*Vp/math.abs(B);
     r/=Math.pow(10,6)
     let Qr=math.sqrt(Math.pow(r,2)-Math.pow((Pr/(3*Math.pow(10,6))+Cr[0]/Math.pow(10,6)),2)) - Cr[1]/Math.pow(10,6);
-    let Q = math.sin(math.acos(pfr))*Pr/(pfr*Math.pow(10,6))/3;
+    let Q = sign*math.sin(math.acos(pfr))*Pr/(pfr*Math.pow(10,6))/3;
     console.log(Q,Qr)
-    return (Q-Qr)
+    return (Qr-Q)
 }
