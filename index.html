@@ -18,8 +18,16 @@
     <header class="shadow-dreamy" id="outputhead">
         <h1> Transmission Line Characteristics - Output Page</h1>
     </header>
+    <div class="about">
+        A project by:
+        <ol>
+            <li>Nithin Sravan R.            <strong>107119081</strong></li>
+            <li>Chockalingam Thennappan     <strong>107119035</strong></li>
+            <li>Shakya Reddy                <strong>107119137</strong></li>
+        </ol>
+    </div>
     <div class="container" id="visible">
-    
+        <div class="warning shadow-dreamy-red">Please fill all the fields below</div>
         <form class="shadow-dreamy" autocomplete="off">
             <h2>Please Enter Valid Inputs</h2>
             <div id="radio">
@@ -27,7 +35,12 @@
                 <input id="sym" name="choice"type="radio" onclick="onCheck()">
                 <label for="sym">Symmetrical</label><br>
                 <input id="unsym" name="choice" type="radio" onclick="onCheck()" checked>
-                <label for="unsym">Unsymmetrical</label>
+                <label for="unsym">Unsymmetrical</label><br>
+                <select name="line" id="drop">
+                    <option value="short">Short</option>
+                    <option value="nominalpi">Nominal-Pi</option>
+                    <option value="long">Long</option>
+                  </select>
             </div>
 
             <div id="params">
@@ -112,7 +125,7 @@
         <span class="hide" id="g1">Sending End Power Circle Diagram</span>
         <div id="s" style="width: 800px; height: 400px;"></div>
         <div class="html2pdf__page-break"></div>
-        <span class="hide" id="g2">Sending End Power Circle Diagram</span>
+        <span class="hide" id="g2">Receiving End Power Circle Diagram</span>
         <div id="r" style="width: 800px; height: 400px;"></div>
     </div>
     <p>A webpage by<br>Nithin Sravan, Chockalingam and Shakya Reddy<br><span id="heart"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">&hearts;</a></span></p>

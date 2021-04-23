@@ -32,23 +32,47 @@ function init(){
 }
 //master function
 function master(){
-    init()
+    let flag=true;
+    inputs.forEach(e => {
+        console.log(e.value=="",!e.disabled)
+        if(!e.disabled){
+            if(e.value=="")
+            flag=false
+        }
+   
+    });
+    console.log(flag)
+    window.scrollBy(0,-(2*window.innerHeight+100))
+    if(flag){
+        document.getElementsByClassName('warning')[0].style.display="none"
+        init()
+        calculate()
+    }
+    else{
+        document.getElementsByClassName('warning')[0].style.display="block"
+    }
+
+  
+}
+function calculate(){
     let str
     let y=math.complex(0,1/Xc);
     let z = math.complex(R*l,Xl);
     console.log(z)
-    if(l<=80){
+  
+    let drop=document.getElementById('drop')
+    if(drop.value==="short"){
         console.log("Short");
         str="Short"
         abcdParams("S",z)
         console.log(A,B,C,D)
 
-    }else if(l>80&&l<=250){
+    }else if(drop.value==="nominalpi"){
         console.log("Nominal-Pi");
         str="Nominal-Pi"
         abcdParams("N",z,y)
         console.log(A,B,C,D)
-    }else if(l>250){
+    }else if(drop.value==="long"){
         console.log("Long");
         str="Long"
         abcdParams("L",z,y)
@@ -81,7 +105,7 @@ function master(){
     let Cr=[]
     let Vp=parseFloat(V)/math.sqrt(3)
     console.log(D.re,B.re)
-    if(l<=80){
+    if(drop.value==="short"){
         Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.cos(math.atan(B.im/B.re)))/math.abs(B))
         Cs.push((math.abs(D)*Math.pow(math.abs(Vs),2)*math.sin(math.atan(B.im/B.re)))/math.abs(B))
         Cr.push((math.abs(A)*Math.pow(Vp,2)*math.cos(math.atan(B.im/B.re)))/math.abs(B))
@@ -112,7 +136,7 @@ function master(){
     outputDiv.style.display="flex"
     outputHead.style.display="flex"
     console.log(L)
-    Ich=chargingCurr(C,Vr);
+    Ich=chargingCurr();
     op[0].innerText=str;
     
 
@@ -127,10 +151,10 @@ function master(){
     op[9].innerText=math.round(Vs,5);
     op[10].innerText=math.round(Is,5);
     op[11].innerText=math.round(Vr,5);
-    op[12].innerText=math.round((Ps-Pr),5);
+    op[12].innerText=math.round((Ps-Pr)/math.pow(10,6),5);
     op[13].innerText=math.round(eff,5);
     op[14].innerText=math.round(Ich,5);
-    if(l<=80){
+    if(drop.value==="short"){
         comp=compensation()
         op[15].innerText=math.round(comp,5)
         document.getElementsByClassName('h')[0].style.display="block"

@@ -5,7 +5,14 @@
     box-sizing: border-box;
     user-select: none;
 }
-.shadow-dreamy{
+.shadow-dreamy-red{
+    box-shadow:0 1px 2px rgba(255, 11, 84, 0.07),
+    0 2px 4px rgba(255, 11, 84, 0.07),0 4px 8px rgba(255, 11, 84, 0.07),
+    0 8px 16px rgba(255, 11, 84, 0.07),
+    0 16px 32px rgba(255, 11, 84, 0.07),
+    0 32px 64px rgba(255, 11, 84, 0.07)
+  }
+  .shadow-dreamy{
     box-shadow:0 1px 2px rgba(36, 11, 65, 0.07),
     0 2px 4px rgba(36, 11, 65, 0.07),0 4px 8px rgba(36, 11, 65, 0.07),
     0 8px 16px rgba(36, 11, 65, 0.07),
@@ -45,6 +52,15 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    
+}
+.about{
+    margin: 10px 0;
+    background-color: rgb(255, 253, 148);
+    padding: 30px;
+    width: 30vw;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 header{
     display: flex;
@@ -64,10 +80,19 @@ h2{
     font-size: 1.5em;
 }
 .container{
-    margin-top: 50px;
+    margin-top: 20px;
     align-items: center;
 
 }
+#drop{
+    margin-top: 10px;
+    outline: none;
+    width: 10vw;
+}
+#drop option{
+    padding: 5px 20px;
+}
+
  p{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -218,4 +243,15 @@ a{
     background-color: rgba(255, 251, 6, 0.212);
     padding: 30px;
     
+}
+.warning{
+    display: none;
+    margin-bottom: 30px;
+    background-color: rgb(255, 0, 64);
+    width: 65vw;
+    padding: 20px 70px;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    flex-direction: column;
 }

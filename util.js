@@ -45,8 +45,11 @@ function graph(Cs,Cr,r) {
   document.querySelectorAll('.hide')[0].style.display="block";
   document.querySelectorAll('.hide')[1].style.display="block";
   r/=Math.pow(10,6);
-  
-  graph1.setExpression({ id: "graph1", latex: `(x-${Cs[0]/Math.pow(10,6)})^2+(y-${Cs[1]/Math.pow(10,6)})^2=${r*r}` });
+  graph1.updateSettings({ xAxisLabel: 'Ps' });
+  graph1.updateSettings({ yAxisLabel: 'Qs' });
+  graph2.updateSettings({ xAxisLabel: 'Pr' });
+  graph2.updateSettings({ yAxisLabel: 'Qr' });
+  graph1.setExpression({ id: "graph1", latex: `(x-${Cs[0]/Math.pow(10,6)})^2+(y-${Cs[1]/Math.pow(10,6)})^2=${r*r}` ,color:'#ff0b54'});
   graph2.setExpression({ id: "graph2", latex: `(x+${Cr[0]/Math.pow(10,6)})^2+(y+${Cr[1]/Math.pow(10,6)})^2=${r*r}` });
 }
 function mgmd(d1,d2,d3){
@@ -148,7 +151,7 @@ function capacitance(N,s,d1,d2,d3){
 
 //charging current
 function chargingCurr(C,Vr){
-    return math.multiply(C,Vr)
+    return math.subtract(Is,Ir)
 }
 
 //Compensation
