@@ -23,8 +23,9 @@ let Ich; //Charging Current
 s=[]
 let comp; //compensation
 let sign;//sign
-let epsilon =  8.85*Math.pow(10,-12);
+let epsilon =  8.85*Math.pow(10,-12);//epsilon
 
+//input objects
 let sgmdIp = document.getElementById('sgmd');
 let symRad = document.getElementById('sym');
 let unsymRad = document.getElementById('unsym');
@@ -34,11 +35,13 @@ let inputs = document.querySelectorAll('#params input')
 let seEnd = document.getElementById('s');
 let reEnd = document.getElementById('r');
 
-document.addEventListener("wheel", function(event){
+document.addEventListener("wheel", function(e){
     if(document.activeElement.type === "number"){
         document.activeElement.blur();
     }
 });
+
+//plotting function
 function graph(Cs,Cr,r) {
   let graph1 = Desmos.GraphingCalculator(seEnd,{keypad:false});
   let graph2 = Desmos.GraphingCalculator(reEnd,{keypad:false});
@@ -52,12 +55,18 @@ function graph(Cs,Cr,r) {
   graph1.setExpression({ id: "graph1", latex: `(x-${Cs[0]/Math.pow(10,6)})^2+(y-${Cs[1]/Math.pow(10,6)})^2=${r*r}` ,color:'#ff0b54'});
   graph2.setExpression({ id: "graph2", latex: `(x+${Cr[0]/Math.pow(10,6)})^2+(y+${Cr[1]/Math.pow(10,6)})^2=${r*r}` });
 }
+
+//cube root for mgmd
 function mgmd(d1,d2,d3){
     return Math.cbrt(d1*d2*d3);
 }
+
+//mth root calculator
 function sgmdRoot(prod,m){
     return Math.pow(prod,1/(m*m))
 }
+
+//used to separate the input when comma occurs and store it in an array
 function stringSeparator(){
     let w = sgmdIp.value;
     s_w = w.split(',')
@@ -69,15 +78,21 @@ function stringSeparator(){
     });
     return s;
 }
+
+//calculates diameter of subconductor
 function subDia(N,d){
     let m = (3+math.sqrt(12*N-3))/6; //number of layers
     let D = (2*m-1)*d; //diameter of subconductor
     return D
 }
+
+//calculates receiving current
 function receivingCurr(Pr, pfr,V){
     let Ir=Pr/(V*pfr*math.sqrt(3));
     return Ir;
 }
+
+//calculates ABCD params
 function abcdParams(model,z,y=1){
     if(model === "S"){
         A = 1
@@ -105,16 +120,21 @@ function abcdParams(model,z,y=1){
     }
 }
 
+//calculates Voltage Regulation
 function VR(V){
     let Vnl= math.abs(Vs)/math.abs(A);
     let vr=(Vnl-V)/V;
     return vr*100;
 }
+
+//calculates efficiency
 function effc(Pr,Vs,Is){
     Ps = 3*math.abs(Vs)*math.abs(Is)*math.cos(math.atan(Vs.im/Vs.re)-math.atan(Is.im/Is.re))
     let eff = 100*Pr/Ps 
     return eff;
 }
+
+//calculates sgmd
 function sgmd(Nc,sd,ele){
     let r_dash
     //let r=0.006
@@ -138,7 +158,7 @@ function inductance(N,s,d1,d2,d3){
     let SGMD = sgmd(N,s,"L")
     let MGMD = mgmd(d1,d2,d3)
     let L = 2*Math.pow(10,-7)*Math.log(MGMD/SGMD);
-    console.log(L)
+  
     return L*1000
 }
 //capacitance per km
@@ -150,7 +170,7 @@ function capacitance(N,s,d1,d2,d3){
 }
 
 //charging current
-function chargingCurr(C,Vr){
+function chargingCurr(){
     return math.subtract(Is,Ir)
 }
 
@@ -164,6 +184,6 @@ function compensation(){
     r/=Math.pow(10,6)
     let Qr=math.sqrt(Math.pow(r,2)-Math.pow((Pr/(3*Math.pow(10,6))+Cr[0]/Math.pow(10,6)),2)) - Cr[1]/Math.pow(10,6);
     let Q = sign*math.sin(math.acos(pfr))*Pr/(pfr*Math.pow(10,6))/3;
-    console.log(Q,Qr)
+
     return (Qr-Q)
 }
