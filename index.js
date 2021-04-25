@@ -129,11 +129,11 @@ function calculate(){
     if(drop.value ==="short"){
         comp=compensation()
         
-        if(typeof(comp) == "undefined"){
-            op[15].innerText="invalid"
+        if(comp){
+            op[15].innerText=math.round(comp,5)
         }
         else{
-            op[15].innerText=math.round(comp,5)
+            op[15].innerText="invalid"
         }
         document.getElementsByClassName('h')[0].style.display="block"
         if(comp<0)
