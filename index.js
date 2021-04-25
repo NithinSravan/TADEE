@@ -21,8 +21,6 @@ function init(){
    pfr=inputs[12].value;
    Dia = subDia(n,d);
 
-
-   console.log(d)
    s=stringSeparator()
    L =inductance(N,s,d1,d2,d3)
    Cap=capacitance(N,s,d1,d2,d3)
