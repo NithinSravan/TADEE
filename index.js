@@ -129,7 +129,7 @@ function calculate(){
     if(drop.value ==="short"){
         comp=compensation()
         
-        if(comp == "undefined"){
+        if(typeof(comp) == "undefined"){
             op[15].innerText="invalid"
         }
         else{
