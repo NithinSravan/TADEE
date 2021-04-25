@@ -19,9 +19,10 @@ function init(){
    V=inputs[10].value*Math.pow(10,3);
    Pr=inputs[11].value*Math.pow(10,6); 
    pfr=inputs[12].value;
+   Dia = subDia(n,d);
 
-   Dia = subDia(N,d);
- 
+
+   console.log(d)
    s=stringSeparator()
    L =inductance(N,s,d1,d2,d3)
    Cap=capacitance(N,s,d1,d2,d3)
@@ -127,9 +128,15 @@ function calculate(){
     op[13].innerText=math.round(eff,5);
     op[14].innerText=math.round(Ich,5);
     
-    if(drop.value==="short"){
+    if(drop.value ==="short"){
         comp=compensation()
-        op[15].innerText=math.round(comp,5)
+        
+        if(comp == "undefined"){
+            op[15].innerText="invalid"
+        }
+        else{
+            op[15].innerText=math.round(comp,5)
+        }
         document.getElementsByClassName('h')[0].style.display="block"
         if(comp<0)
         document.getElementsByClassName('h')[1].style.display="block"

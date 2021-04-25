@@ -83,6 +83,7 @@ function stringSeparator(){
 function subDia(N,d){
     let m = (3+math.sqrt(12*N-3))/6; //number of layers
     let D = (2*m-1)*d; //diameter of subconductor
+    console.log(D,m,N,)
     return D
 }
 
@@ -156,6 +157,7 @@ function sgmd(Nc,sd,ele){
 //inductance per km
 function inductance(N,s,d1,d2,d3){
     let SGMD = sgmd(N,s,"L")
+    console.log(SGMD)
     let MGMD = mgmd(d1,d2,d3)
     let L = 2*Math.pow(10,-7)*Math.log(MGMD/SGMD);
   
